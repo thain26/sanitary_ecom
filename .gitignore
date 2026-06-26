@@ -1,0 +1,40 @@
+node_modules/
+dist/
+build/
+.env
+.env.*
+!.env.example
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+spring_error.log
+
+# Java/Spring Boot
+target/
+*.class
+*.jar
+*.war
+*.ear
+.mvn/
+mvnw
+mvnw.cmd
+.idea/
+*.iml
+.metadata/
+classpath.txt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific ignores
+tools/
+*.traineddata
+catalog_pages_img/
+*.csv
+*.pdf

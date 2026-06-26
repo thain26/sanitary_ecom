@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: sanitary-ecommerce-backend
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sanitary_ecom_db
+    username: postgres
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  cache:
+    type: redis
+
+  jpa:
+    hibernate:
+      ddl-auto: validate # Sử dụng Flyway để quản lý schema thay vì Hibernate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME:test@gmail.com}
+    password: ${MAIL_PASSWORD:test}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+server:
+  port: 8080
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+ai:
+  gemini:
+    api-key: ${GEMINI_API_KEY}
+    model: gemini-2.0-flash
+    endpoint: https://generativelanguage.googleapis.com/v1beta/models
+
+application:
+  security:
+    jwt:
+      secret-key: ${JWT_SECRET}
+      expiration: 3600000

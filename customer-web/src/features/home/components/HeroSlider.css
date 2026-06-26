@@ -1,0 +1,209 @@
+.hero-slider-container {
+  position: relative;
+  height: 80vh;
+  min-height: 600px;
+  overflow: hidden;
+  margin-bottom: 5rem;
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.hero-slider-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%);
+}
+
+.hero-slide .hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 650px;
+  padding: 0 4rem;
+  color: #fff;
+}
+
+.hero-brand {
+  font-family: 'Jost', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: #e5e5e5;
+}
+
+.hero-slide .hero-title {
+  font-family: 'Jost', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+.hero-slide .hero-desc {
+  font-size: 1.1rem;
+  color: #f0f0f0;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.btn-slider {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 2.5rem;
+  background: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-slider:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  color: white;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.slider-arrow:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.slider-arrow.prev {
+  left: 2rem;
+}
+
+.slider-arrow.next {
+  right: 2rem;
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 0.6rem;
+}
+
+.slider-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 0;
+}
+
+.slider-dot.active {
+  background: #ffffff;
+}
+
+/* ─── Service Slide ─────────────────────────────────────────────────── */
+.hero-slide--service {
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1412 50%, #0f0f0f 100%);
+}
+
+.hero-slider-overlay--dark {
+  background: linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0.1) 100%);
+}
+
+.hero-content--service {
+  max-width: 750px;
+}
+
+.hero-service-badge {
+  display: inline-block;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #c9a96e;
+  border: 1px solid #c9a96e;
+  padding: 0.3rem 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-title--service {
+  font-size: 3rem !important;
+}
+
+.hero-service-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 2.5rem;
+}
+
+.hero-service-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: #e0dbd4;
+  font-weight: 300;
+}
+
+.hero-service-item svg {
+  color: #c9a96e;
+  flex-shrink: 0;
+}
+
+.btn-slider--gold {
+  border-color: #c9a96e;
+  color: #c9a96e;
+}
+
+.btn-slider--gold:hover {
+  background: rgba(201, 169, 110, 0.15);
+  border-color: #c9a96e;
+  color: #c9a96e;
+}
+

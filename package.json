@@ -1,0 +1,22 @@
+{
+  "devDependencies": {
+    "pdf-parse": "^2.4.5"
+  },
+  "dependencies": {
+    "axios": "^1.18.1",
+    "canvas": "^3.2.3",
+    "cheerio": "^1.2.0",
+    "csv-parser": "^3.2.1",
+    "csv-writer": "^1.6.0",
+    "node-tesseract-ocr": "^2.2.1",
+    "pdf2json": "^4.0.3",
+    "pdf2pic": "^3.2.0",
+    "pdfjs-dist": "^2.16.105",
+    "pg": "^8.22.0",
+    "puppeteer": "^25.2.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "sharp": "^0.35.2",
+    "tesseract.js": "^7.0.0"
+  }
+}

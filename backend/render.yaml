@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: sanitary-backend
+    env: docker
+    region: singapore # Hoặc oregon tùy vị trí gần bạn nhất
+    plan: free
+    dockerCommand: ./mvnw clean package -DskipTests && java -jar target/ecommerce-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        sync: false
+      - key: SPRING_DATASOURCE_USERNAME
+        sync: false
+      - key: SPRING_DATASOURCE_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: SPRING_DATA_REDIS_HOST
+        sync: false
+      - key: SPRING_DATA_REDIS_PORT
+        sync: false
+      - key: SPRING_DATA_REDIS_PASSWORD
+        sync: false

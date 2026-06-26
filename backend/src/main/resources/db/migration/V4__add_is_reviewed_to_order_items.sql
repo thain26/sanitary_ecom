@@ -1,0 +1,1 @@
+﻿ALTER TABLE order_items ADD COLUMN is_reviewed BOOLEAN DEFAULT FALSE;
