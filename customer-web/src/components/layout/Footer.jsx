@@ -1,3 +1,5 @@
+import { MapPin, Phone, Mail } from 'lucide-react';
+
 const Footer = () => {
   return (
     <footer className="footer">
@@ -14,15 +16,27 @@ const Footer = () => {
 
           <div>
             <h3 className="footer-title">Showroom</h3>
-            <p className="footer-text" style={{ marginBottom: '0.8rem' }}>155 Nguyễn Văn Trỗi</p>
-            <p className="footer-text">Phường 11, Phú Nhuận, TP.HCM</p>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '1rem' }}>
+              <MapPin size={18} color="var(--color-accent)" style={{ marginTop: '2px', flexShrink: 0 }} />
+              <p className="footer-text" style={{ margin: 0 }}>155 Nguyễn Văn Trỗi, Hà Đông, Hà Nội</p>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
+              <MapPin size={18} color="var(--color-accent)" style={{ marginTop: '2px', flexShrink: 0 }} />
+              <p className="footer-text" style={{ margin: 0 }}>Phường 11, Phú Nhuận, TP.HCM</p>
+            </div>
           </div>
 
           <div>
             <h3 className="footer-title">Hỗ Trợ</h3>
-            <p className="footer-text" style={{ marginBottom: '0.8rem' }}>Hotline: 1800 1234</p>
-            <p className="footer-text" style={{ marginBottom: '0.8rem' }}>Email: aqualux@gmail.com</p>
-            <a href="#" className="footer-link">Chính sách bảo hành</a>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+              <Phone size={18} color="var(--color-accent)" />
+              <p className="footer-text" style={{ margin: 0 }}>Hotline: 1800 1234</p>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.2rem' }}>
+              <Mail size={18} color="var(--color-accent)" />
+              <p className="footer-text" style={{ margin: 0 }}>Email: aqualux@gmail.com</p>
+            </div>
+            <a href="#" className="footer-link" style={{ display: 'inline-block' }}>Chính sách bảo hành</a>
           </div>
         </div>
 
