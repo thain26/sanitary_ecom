@@ -385,7 +385,7 @@ const VoucherList = () => {
 
             <Form.Item
               name="appliesTo"
-              label="Ăp dụng cho"
+              label="Áp dụng cho"
               rules={[{ required: true, message: 'Vui lòng chọn đối tượng áp dụng!' }]}
               style={{ width: '230px' }}
             >

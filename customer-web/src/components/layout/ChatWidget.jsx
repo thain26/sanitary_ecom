@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const WELCOME_MESSAGE = {
   role: 'assistant',
@@ -61,7 +62,11 @@ const ChatWidget = () => {
         history,
       });
 
-      const assistantMsg = { role: 'assistant', content: res.data.reply };
+      const assistantMsg = { 
+        role: 'assistant', 
+        content: res.data.reply,
+        suggestedProducts: res.data.suggestedProducts
+      };
       setMessages(prev => [...prev, assistantMsg]);
       if (!isOpen) setHasNewMsg(true);
     } catch (err) {
@@ -198,21 +203,68 @@ const ChatWidget = () => {
                   fontSize: '0.9rem', flexShrink: 0,
                 }}>🤖</div>
               )}
-              <div style={{
-                maxWidth: '78%',
-                padding: '0.7rem 1rem',
-                borderRadius: msg.role === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
-                background: msg.role === 'user'
-                  ? 'linear-gradient(135deg, #c9a655, #9a7230)'
-                  : 'white',
-                color: msg.role === 'user' ? 'white' : '#333',
-                fontSize: '0.875rem',
-                lineHeight: '1.55',
-                boxShadow: msg.role === 'user' ? '0 2px 10px rgba(184,146,74,0.3)' : '0 2px 8px rgba(0,0,0,0.07)',
-                wordBreak: 'break-word',
-              }}
-                dangerouslySetInnerHTML={{ __html: formatText(msg.content) }}
-              />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', maxWidth: '78%' }}>
+                <div style={{
+                  padding: '0.7rem 1rem',
+                  borderRadius: msg.role === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
+                  background: msg.role === 'user'
+                    ? 'linear-gradient(135deg, #c9a655, #9a7230)'
+                    : 'white',
+                  color: msg.role === 'user' ? 'white' : '#333',
+                  fontSize: '0.875rem',
+                  lineHeight: '1.55',
+                  boxShadow: msg.role === 'user' ? '0 2px 10px rgba(184,146,74,0.3)' : '0 2px 8px rgba(0,0,0,0.07)',
+                  wordBreak: 'break-word',
+                }}
+                  dangerouslySetInnerHTML={{ __html: formatText(msg.content) }}
+                />
+                
+                {msg.suggestedProducts && msg.suggestedProducts.length > 0 && (
+                  <div style={{
+                    display: 'flex',
+                    gap: '0.5rem',
+                    overflowX: 'auto',
+                    padding: '0.2rem 0 0.5rem 0',
+                    maxWidth: '100%',
+                    msOverflowStyle: 'none',
+                    scrollbarWidth: 'none',
+                  }} className="ai-suggest-scroll">
+                    {msg.suggestedProducts.map((p, idx) => (
+                      <Link 
+                        to={`/san-pham/${p.slug}`} 
+                        key={idx}
+                        style={{
+                          minWidth: '130px',
+                          maxWidth: '130px',
+                          background: 'white',
+                          borderRadius: '8px',
+                          boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                          textDecoration: 'none',
+                          color: 'inherit',
+                          overflow: 'hidden',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          flexShrink: 0,
+                          border: '1px solid #f0f0f0',
+                          transition: 'transform 0.2s',
+                        }}
+                        onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
+                        onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+                      >
+                        <img src={p.imageUrl || '/placeholder.jpg'} alt={p.name} style={{ width: '100%', height: '100px', objectFit: 'cover' }} />
+                        <div style={{ padding: '0.5rem' }}>
+                          <div style={{ fontSize: '0.75rem', fontWeight: '600', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', marginBottom: '4px' }}>
+                            {p.name}
+                          </div>
+                          <div style={{ fontSize: '0.8rem', color: '#c9a655', fontWeight: '700' }}>
+                            {p.price ? p.price.toLocaleString('vi-VN') + ' đ' : 'Liên hệ'}
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           ))}
 
