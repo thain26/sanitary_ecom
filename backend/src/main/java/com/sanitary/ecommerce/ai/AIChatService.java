@@ -200,7 +200,7 @@ public class AIChatService {
                         "parts", List.of(Map.of("text", prompt)))),
                 "generationConfig", Map.of(
                         "temperature", 0.8,
-                        "maxOutputTokens", 1024,
+                        "maxOutputTokens", 2048,
                         "topP", 0.9));
 
         String jsonBody = objectMapper.writeValueAsString(requestBody);
