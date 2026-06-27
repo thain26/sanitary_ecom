@@ -13,17 +13,16 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="footer-title">Bộ Sưu Tập</h3>
-            <a href="#" className="footer-link">Bồn cầu thông minh Satis</a>
-            <a href="#" className="footer-link">Dòng sản phẩm Aqua Ceramic</a>
-            <a href="#" className="footer-link">Vòi nước Lumina</a>
+            <h3 className="footer-title">Showroom</h3>
+            <p className="footer-text" style={{marginBottom: '0.8rem'}}>155 Nguyễn Văn Trỗi</p>
+            <p className="footer-text">Phường 11, Phú Nhuận, TP.HCM</p>
           </div>
 
           <div>
             <h3 className="footer-title">Hỗ Trợ</h3>
-            <a href="#" className="footer-link">Liên hệ</a>
-            <a href="#" className="footer-link">Đăng ký bảo hành</a>
-            <a href="#" className="footer-link">Hướng dẫn lắp đặt</a>
+            <p className="footer-text" style={{marginBottom: '0.8rem'}}>Hotline: 1800 1234</p>
+            <p className="footer-text" style={{marginBottom: '0.8rem'}}>Email: aqualux@gmail.com</p>
+            <a href="#" className="footer-link">Chính sách bảo hành</a>
           </div>
         </div>
         
