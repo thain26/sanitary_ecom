@@ -23,7 +23,6 @@ public class Product extends BaseEntity {
     private String slug;
     private String modelCode;
     private String sku;
-    private String description;
     
     @Column(name = "detail", columnDefinition = "text")
     private String detail;
@@ -86,14 +85,6 @@ public class Product extends BaseEntity {
 
     public void setSku(String sku) {
         this.sku = sku;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getDetail() {

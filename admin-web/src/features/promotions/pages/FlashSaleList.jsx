@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Table, Button, Space, Modal, Form, Input, InputNumber, Select, Switch, message, Popconfirm, Tag, Drawer, Card, Statistic, Row, Col } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined, SettingOutlined, FireOutlined } from '@ant-design/icons';
 import { adminApi } from '../../../services/api';
+import FlashSaleModal from '../components/FlashSaleModal';
+import FlashSaleProductEditModal from '../components/FlashSaleProductEditModal';
+import ProductSelectorForm from '../components/ProductSelectorForm';
 
 const FlashSaleList = () => {
   const [flashSales, setFlashSales] = useState([]);
@@ -428,55 +431,14 @@ const FlashSaleList = () => {
       </div>
 
       {/* Campaign Detail / Edit Modal */}
-      <Modal
-        title={currentSale ? "Chỉnh sửa chiến dịch Flash Sale" : "Tạo chiến dịch Flash Sale mới"}
-        open={isModalOpen}
-        onOk={handleSave}
-        onCancel={() => setIsModalOpen(false)}
-        confirmLoading={saveLoading}
-        okText="Lưu lại"
-        cancelText="Hủy bỏ"
-        okButtonProps={{ style: { backgroundColor: '#0f172a', borderColor: '#0f172a' } }}
-      >
-        <Form
-          form={form}
-          layout="vertical"
-          name="flashSaleForm"
-          style={{ marginTop: '16px' }}
-        >
-          <Form.Item
-            name="name"
-            label="Tên chiến dịch Flash Sale"
-            rules={[{ required: true, message: 'Nhập tên chiến dịch!' }]}
-          >
-            <Input placeholder="Ví dụ: Khuyến mãi bùng nổ giọvàng 12h..." />
-          </Form.Item>
-
-          <Space style={{ display: 'flex', width: '100%' }} size="large">
-            <Form.Item
-              name="startTime"
-              label="Thời gian bắt đầu"
-              rules={[{ required: true, message: 'Chọn thời gian bắt đầu!' }]}
-              style={{ width: '220px' }}
-            >
-              <input type="datetime-local" className="ant-input" style={{ width: '100%', height: '32px', borderRadius: '6px', border: '1px solid #d9d9d9', padding: '4px 11px' }} />
-            </Form.Item>
-
-            <Form.Item
-              name="endTime"
-              label="Thời gian kết thúc"
-              rules={[{ required: true, message: 'Chọn thời gian kết thúc!' }]}
-              style={{ width: '220px' }}
-            >
-              <input type="datetime-local" className="ant-input" style={{ width: '100%', height: '32px', borderRadius: '6px', border: '1px solid #d9d9d9', padding: '4px 11px' }} />
-            </Form.Item>
-          </Space>
-
-          <Form.Item name="active" label="Trạng thái" valuePropName="checked" style={{ marginTop: '8px', marginBottom: 0 }}>
-            <Switch />
-          </Form.Item>
-        </Form>
-      </Modal>
+      <FlashSaleModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSave={handleSave}
+        loading={saveLoading}
+        form={form}
+        currentSale={currentSale}
+      />
 
       {/* Manage Products Drawer */}
       <Drawer
@@ -504,72 +466,14 @@ const FlashSaleList = () => {
             </Card>
 
             {/* Form to Add Product */}
-            <Card title="Thêm sản phẩm vào Flash Sale" size="small">
-              <Form
-                form={productForm}
-                layout="inline"
-                onFinish={handleAddProduct}
-                style={{ alignItems: 'flex-end', gap: '10px' }}
-              >
-                <Form.Item
-                  name="productId"
-                  label="Chọn sản phẩm"
-                  rules={[{ required: true, message: 'Vui lòng chọn sản phẩm' }]}
-                  style={{ width: '280px', margin: 0 }}
-                >
-                  <Select
-                    showSearch
-                    placeholder="Tìm tên hoặc model..."
-                    filterOption={false}
-                    onSearch={loadSearchProducts}
-                    loading={searchLoading}
-                    notFoundContent={searchLoading ? 'Đang tìm...' : 'Không thấy sản phẩm'}
-                    style={{ width: '100%' }}
-                  >
-                    {searchProducts.map(p => (
-                      <Select.Option key={p.id} value={p.id}>
-                        {p.name} ({p.modelCode})
-                      </Select.Option>
-                    ))}
-                  </Select>
-                </Form.Item>
-
-                <Form.Item
-                  name="salePrice"
-                  label="Giá bán"
-                  rules={[{ required: true, message: 'Nhập giá bán' }]}
-                  style={{ width: '150px', margin: 0 }}
-                >
-                  <InputNumber
-                    min={0}
-                    style={{ width: '100%' }}
-                    formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                    parser={value => value.replace(/\$\s?|(,*)/g, '')}
-                    placeholder="VND"
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name="quantityLimit"
-                  label="G.Hạn"
-                  rules={[{ required: true, message: 'Nhập giới hạn' }]}
-                  style={{ width: '100px', margin: 0 }}
-                >
-                  <InputNumber min={1} style={{ width: '100%' }} placeholder="Số lượng" />
-                </Form.Item>
-
-                <Form.Item style={{ margin: 0 }}>
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    loading={addProductLoading}
-                    style={{ backgroundColor: '#0f172a', borderColor: '#0f172a' }}
-                  >
-                    Thêm
-                  </Button>
-                </Form.Item>
-              </Form>
-            </Card>
+            <ProductSelectorForm
+              form={productForm}
+              onAdd={handleAddProduct}
+              onSearch={loadSearchProducts}
+              searchLoading={searchLoading}
+              searchResults={searchProducts}
+              addLoading={addProductLoading}
+            />
 
             {/* List of Products inside Flash Sale */}
             <Table
@@ -586,58 +490,14 @@ const FlashSaleList = () => {
       </Drawer>
 
       {/* Edit Flash Sale Product Modal */}
-      <Modal
-        title="Chỉnh sửa sản phẩm Flash Sale"
-        open={isEditProductModalOpen}
-        onOk={handleSaveProduct}
-        onCancel={() => setIsEditProductModalOpen(false)}
-        confirmLoading={saveProductLoading}
-        okText="Lưu lại"
-        cancelText="Hủy bỏ"
-        okButtonProps={{ style: { backgroundColor: '#0f172a', borderColor: '#0f172a' } }}
-      >
-        <Form
-          form={editProductForm}
-          layout="vertical"
-          name="editProductFsForm"
-          style={{ marginTop: '16px' }}
-        >
-          {editingFsProduct && (
-            <div style={{ marginBottom: '16px' }}>
-              <strong>Sản phẩm:</strong> {editingFsProduct.name} ({editingFsProduct.modelCode})
-            </div>
-          )}
-
-          <Form.Item
-            name="salePrice"
-            label="Giá bán Flash Sale (VND)"
-            rules={[{ required: true, message: 'Nhập giá bán!' }]}
-          >
-            <InputNumber
-              min={0}
-              style={{ width: '100%' }}
-              formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-              parser={value => value.replace(/\$\s?|(,*)/g, '')}
-            />
-          </Form.Item>
-
-          <Form.Item
-            name="quantityLimit"
-            label="Giới hạn số lượng bán"
-            rules={[{ required: true, message: 'Nhập giới hạn số lượng!' }]}
-          >
-            <InputNumber min={1} style={{ width: '100%' }} />
-          </Form.Item>
-
-          <Form.Item
-            name="soldCount"
-            label="Số lượng đã bán"
-            rules={[{ required: true, message: 'Nhập số lượng đã bán!' }]}
-          >
-            <InputNumber min={0} style={{ width: '100%' }} />
-          </Form.Item>
-        </Form>
-      </Modal>
+      <FlashSaleProductEditModal
+        isOpen={isEditProductModalOpen}
+        onClose={() => setIsEditProductModalOpen(false)}
+        onSave={handleSaveProduct}
+        loading={saveProductLoading}
+        form={editProductForm}
+        editingProduct={editingFsProduct}
+      />
     </div>
   );
 };

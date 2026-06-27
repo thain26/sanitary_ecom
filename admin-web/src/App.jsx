@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { App as AntdApp } from 'antd';
+import AntdGlobalContext from './utils/AntdGlobalContext';
 import { useAuthStore } from './features/auth/store/authStore';
 import AdminLayout from './components/layout/AdminLayout';
 import Login from './features/auth/pages/Login';
@@ -29,9 +31,19 @@ const ProtectedRoute = ({ children }) => {
 
 
 
+
+
+
 function App() {
   return (
-    <BrowserRouter>
+    <AntdApp>
+      <AntdGlobalContext />
+      <BrowserRouter
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+      >
       <Routes>
         <Route path="/login" element={<Login />} />
         
@@ -120,6 +132,7 @@ function App() {
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </BrowserRouter>
+    </AntdApp>
   );
 }
 

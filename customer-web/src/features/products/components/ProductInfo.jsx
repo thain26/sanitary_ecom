@@ -35,11 +35,6 @@ const ProductInfo = ({ product, quantity, setQuantity, onAddToCart }) => {
         {formatPrice(product.salePrice || product.basePrice)}
       </div>
 
-      <div 
-        style={{ lineHeight: 1.8, color: 'var(--color-text-muted)', marginBottom: '3rem', fontSize: '1rem' }}
-        dangerouslySetInnerHTML={{ __html: product.description }}
-      />
-
       <div style={{ display: 'flex', gap: '1.5rem', marginBottom: '3rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', border: '1px solid var(--color-border)', borderRadius: '2px' }}>
           <button 
@@ -89,8 +84,8 @@ const ProductInfo = ({ product, quantity, setQuantity, onAddToCart }) => {
         <Accordion 
           items={[
             ...(product.detail ? [{
-              title: 'Thông số kỹ thuật & Chi tiết',
-              content: <div dangerouslySetInnerHTML={{ __html: product.detail }} className="product-detail-html" />
+              title: 'Chi tiết sản phẩm',
+              content: <div dangerouslySetInnerHTML={{ __html: product.detail }} className="product-detail-html" style={{ whiteSpace: 'pre-wrap' }} />
             }] : []),
             {
               title: 'Vận chuyển & Lắp đặt',

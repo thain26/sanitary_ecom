@@ -1,6 +1,7 @@
-﻿import React, { useState, useEffect } from 'react';
+import { message } from '../../../utils/AntdGlobalContext';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Card, Row, Col, Descriptions, Table, Tag, Button, Steps, Timeline, Space, Select, Input, Modal, message, Spin, Divider } from 'antd';
+import { Card, Row, Col, Descriptions, Table, Tag, Button, Steps, Timeline, Space, Select, Input, Modal, Spin, Divider } from 'antd';
 import { ArrowLeftOutlined, CheckCircleOutlined, DollarOutlined, CloseCircleOutlined, CarOutlined } from '@ant-design/icons';
 import { adminApi } from '../../../services/api';
 
@@ -83,7 +84,9 @@ const OrderDetail = () => {
   if (loading) {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
-        <Spin size="large" tip="Đang tải thông tin đơn hàng..." />
+        <Spin size="large" tip="Đang tải thông tin đơn hàng...">
+          <div style={{ padding: 50 }} />
+        </Spin>
       </div>
     );
   }
@@ -185,7 +188,7 @@ const OrderDetail = () => {
       </div>
 
       {/* Progress Flow */}
-      <Card style={{ marginBottom: '24px' }} bodyStyle={{ padding: '24px' }}>
+      <Card style={{ marginBottom: '24px' }} styles={{ body: { padding: '24px' } }}>
         <Steps
           current={order.status === 'CANCELLED' ? 1 : currentStep}
           status={getStepStatus()}

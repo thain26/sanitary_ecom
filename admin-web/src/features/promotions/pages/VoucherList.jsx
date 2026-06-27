@@ -1,5 +1,6 @@
+import { message } from '../../../utils/AntdGlobalContext';
 import React, { useState, useEffect } from 'react';
-import { Table, Button, Space, Modal, Form, Input, InputNumber, Select, Switch, message, Popconfirm, Tag } from 'antd';
+import { Table, Button, Space, Modal, Form, Input, InputNumber, Select, Switch, Popconfirm, Tag } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { adminApi } from '../../../services/api';
 

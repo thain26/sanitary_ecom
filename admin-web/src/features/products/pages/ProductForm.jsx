@@ -1,5 +1,6 @@
+import { message } from '../../../utils/AntdGlobalContext';
 import React, { useState, useEffect } from 'react';
-import { Form, Input, InputNumber, Select, Switch, Button, Row, Col, Space, Divider, message, Card } from 'antd';
+import { Form, Input, InputNumber, Select, Switch, Button, Row, Col, Space, Divider, Card } from 'antd';
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import { adminApi } from '../../../services/api';
 
@@ -73,7 +74,6 @@ const ProductForm = ({ visible, initialValues, onSave, onCancel, confirmLoading 
       const payload = {
         name: values.name,
         modelCode: values.modelCode,
-        description: values.description,
         detail: values.detail,
         basePrice: values.basePrice,
         salePrice: values.salePrice,
@@ -86,6 +86,7 @@ const ProductForm = ({ visible, initialValues, onSave, onCancel, confirmLoading 
           const primaryVal = img.isPrimary !== undefined ? img.isPrimary : index === 0;
           return {
             url: img.url,
+            primary: primaryVal,
             isPrimary: primaryVal
           };
         }) || []
@@ -169,13 +170,6 @@ const ProductForm = ({ visible, initialValues, onSave, onCancel, confirmLoading 
               </Form.Item>
             </Col>
           </Row>
-
-          <Form.Item
-            name="description"
-            label="Mô tả sản phẩm"
-          >
-            <TextArea rows={4} placeholder="Nhập mô tả chi tiết về sản phẩm, tính năng, đặc điểm nổi bật..." />
-          </Form.Item>
 
           <Form.Item
             name="detail"
@@ -264,7 +258,21 @@ const ProductForm = ({ visible, initialValues, onSave, onCancel, confirmLoading 
                             valuePropName="checked"
                             style={{ marginBottom: 0 }}
                           >
-                            <Switch checkedChildren="Ảnh chính" unCheckedChildren="Ảnh phụ" size="small" />
+                            <Switch 
+                              checkedChildren="Ảnh chính" 
+                              unCheckedChildren="Ảnh phụ" 
+                              size="small" 
+                              onChange={(checked) => {
+                                if (checked) {
+                                  const currentImages = form.getFieldValue('images');
+                                  const newImages = currentImages.map((img, i) => ({
+                                    ...img,
+                                    isPrimary: i === name ? true : false
+                                  }));
+                                  form.setFieldsValue({ images: newImages });
+                                }
+                              }}
+                            />
                           </Form.Item>
                         </Col>
                         <Col span={12} style={{ textAlign: 'right' }}>

@@ -215,7 +215,7 @@ const Home = () => {
       <section className="container" style={{ marginTop: '6rem' }}>
         <h2 className="title-section">Không Gian Tinh Tuyển</h2>
         <div className="category-grid">
-          {data.categories.map(cat => (
+          {data?.categories?.map(cat => (
             <Link to={`/danh-muc/${cat.slug}`} key={cat.id} className="category-item">
               <img src={cat.imageUrl} alt={cat.name} width={400} height={400} loading="lazy" />
               <div className="category-overlay"></div>
@@ -232,7 +232,7 @@ const Home = () => {
       <section className="container" style={{ marginTop: '8rem' }}>
         <h2 className="title-section">Sản Phẩm Tiêu Biểu</h2>
         <div className="product-grid">
-          {data.featuredProducts.map(p => (
+          {data?.featuredProducts?.map(p => (
             <ProductCard 
               key={p.id} 
               product={p} 

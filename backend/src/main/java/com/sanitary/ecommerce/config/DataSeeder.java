@@ -22,15 +22,15 @@ public class DataSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        if (userRepository.findByEmail("admin@inaxstudio.com").isEmpty()) {
+        if (userRepository.findByEmail("admin@sanitarystudio.com").isEmpty()) {
             User admin = new User();
-            admin.setEmail("admin@inaxstudio.com");
+            admin.setEmail("admin@sanitarystudio.com");
             admin.setPassword(passwordEncoder.encode(adminDefaultPassword));
             admin.setFullName("System Administrator");
             admin.setRole("ADMIN");
             admin.setStatus("ACTIVE");
             userRepository.save(admin);
-            log.info("Admin user seeded: admin@inaxstudio.com");
+            log.info("Admin user seeded: admin@sanitarystudio.com");
         }
     }
 }

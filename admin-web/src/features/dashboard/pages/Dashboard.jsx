@@ -1,5 +1,6 @@
+import { message } from '../../../utils/AntdGlobalContext';
 ﻿import React, { useState, useEffect } from 'react';
-import { Row, Col, Card, Statistic, Table, Alert, Tag, Spin, Space, Button, message } from 'antd';
+import { Row, Col, Card, Statistic, Table, Alert, Tag, Spin, Space, Button } from 'antd';
 import {
   DollarOutlined,
   ShoppingCartOutlined,
@@ -100,7 +101,9 @@ const Dashboard = () => {
   if (loading) {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
-        <Spin size="large" tip="Đang tải dữ liệu thống kê..." />
+        <Spin size="large" tip="Đang tải dữ liệu thống kê...">
+          <div style={{ padding: 50 }} />
+        </Spin>
       </div>
     );
   }
@@ -254,7 +257,7 @@ const Dashboard = () => {
       {/* Graphs */}
       <Row gutter={[24, 24]} style={{ marginBottom: '24px' }}>
         <Col xs={24} lg={16}>
-          <Card title="Biểu đồ Doanh Thu Theo Tháng" bordered={false} style={{ height: '400px' }}>
+          <Card title="Biểu đồ Doanh Thu Theo Tháng" variant="borderless" style={{ height: '400px' }}>
             <div style={{ width: '100%', height: '300px' }}>
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart
@@ -286,7 +289,7 @@ const Dashboard = () => {
         </Col>
 
         <Col xs={24} lg={8}>
-          <Card title="Trạng Thái Đơn Hàng" bordered={false} style={{ height: '400px' }}>
+          <Card title="Trạng Thái Đơn Hàng" variant="borderless" style={{ height: '400px' }}>
             <div style={{ width: '100%', height: '240px', display: 'flex', justifyContent: 'center' }}>
               {pieData.length > 0 ? (
                 <ResponsiveContainer width="100%" height="100%">
@@ -319,7 +322,7 @@ const Dashboard = () => {
       {/* Grid of Tables */}
       <Row gutter={[24, 24]}>
         <Col xs={24} lg={12}>
-          <Card title="Top 5 Sản Phẩm Bán Chạy" bordered={false}>
+          <Card title="Top 5 Sản Phẩm Bán Chạy" variant="borderless">
             <Table
               dataSource={stats?.topProducts || []}
               columns={topProductColumns}
@@ -331,7 +334,7 @@ const Dashboard = () => {
         </Col>
 
         <Col xs={24} lg={12}>
-          <Card title="Cảnh Báo Hết Hàng (Tồn Kho <= 10)" bordered={false}>
+          <Card title="Cảnh Báo Hết Hàng (Tồn Kho <= 10)" variant="borderless">
             <Table
               dataSource={stats?.lowStockProducts || []}
               columns={lowStockColumns}

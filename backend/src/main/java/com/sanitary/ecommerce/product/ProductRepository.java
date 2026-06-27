@@ -71,7 +71,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
            "AND (:minPrice IS NULL OR COALESCE(p.salePrice, p.basePrice) >= :minPrice) " +
            "AND (:maxPrice IS NULL OR COALESCE(p.salePrice, p.basePrice) <= :maxPrice) " +
            "AND (COALESCE(:keyword, '') = '' OR LOWER(p.name) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
-           "     OR LOWER(p.description) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
+           "     OR LOWER(p.detail) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
            "     OR LOWER(p.modelCode) LIKE LOWER(CONCAT('%', :keyword, '%'))) " +
            "AND (COALESCE(:categoryName, '') = '' OR LOWER(p.category.name) LIKE LOWER(CONCAT('%', :categoryName, '%'))) " +
            "ORDER BY p.isFeatured DESC, p.soldCount DESC")

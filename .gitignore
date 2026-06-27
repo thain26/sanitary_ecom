@@ -38,3 +38,7 @@ tools/
 catalog_pages_img/
 *.csv
 *.pdf
+
+# Crawler and Scripts
+tdm_crawler/
+extract_data_script/

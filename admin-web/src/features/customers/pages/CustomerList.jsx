@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, Button, Input, Tag, Space, Modal, message, Badge } from 'antd';
 import { SearchOutlined, LockOutlined, UnlockOutlined } from '@ant-design/icons';
 import { adminApi } from '../../../services/api';
@@ -159,6 +159,7 @@ const CustomerList = () => {
             current: currentPage,
             pageSize: pageSize,
             total: total,
+            showTotal: (total, range) => `Hiển thị ${range[0]}-${range[1]} trên tổng số ${total} kết quả`,
             showSizeChanger: true,
             onChange: (page, size) => {
               setCurrentPage(page);

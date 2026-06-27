@@ -52,7 +52,7 @@ logging:
 ai:
   gemini:
     api-key: ${GEMINI_API_KEY}
-    model: gemini-2.0-flash
+    model: gemini-flash-latest
     endpoint: https://generativelanguage.googleapis.com/v1beta/models
 
 application:

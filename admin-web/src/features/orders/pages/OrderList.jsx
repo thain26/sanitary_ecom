@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, Button, Input, Select, Tag, Space, Card, message } from 'antd';
 import { SearchOutlined, EyeOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
@@ -168,6 +168,7 @@ const OrderList = () => {
             current: currentPage,
             pageSize: pageSize,
             total: total,
+            showTotal: (total, range) => `Hiển thị ${range[0]}-${range[1]} trên tổng số ${total} kết quả`,
             showSizeChanger: true,
             onChange: (page, size) => {
               setCurrentPage(page);

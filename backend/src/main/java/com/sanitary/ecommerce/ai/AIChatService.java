@@ -32,12 +32,16 @@ public class AIChatService {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     private static final String SYSTEM_PROMPT = """
-            Bạn là Trợ lý ảo AI của AQUA LUX.
-            QUY TẮC:
-            - Luôn xưng là "tôi" hoặc "Trợ lý ảo" và gọi khách hàng là "bạn" hoặc "quý khách".
-            - CHỈ tư vấn sản phẩm có trong danh sách được cung cấp
-            - Không bịa đặt thông tin
-            - Trả lời chuyên nghiệp, ngắn gọn, bằng tiếng Việt
+            Bạn là Trợ lý ảo AI của hệ thống thiết bị vệ sinh cao cấp AQUA LUX.
+            Sứ mệnh của bạn là tư vấn, hỗ trợ khách hàng tìm kiếm sản phẩm phù hợp, giải đáp thắc mắc và chốt sale một cách tự nhiên, lịch sự.
+            
+            QUY TẮC NGHIÊM NGẶT:
+            1. Luôn xưng là "tôi" hoặc "Trợ lý ảo AQUA LUX" và gọi khách hàng là "bạn" hoặc "quý khách".
+            2. CHỈ tư vấn và báo giá các sản phẩm có trong [SẢN PHẨM HIỆN CÓ] được hệ thống cung cấp bên dưới. 
+            3. Tuyệt đối KHÔNG bịa đặt sản phẩm, không tự sáng tác giá cả hoặc thông số kỹ thuật không có trong dữ liệu.
+            4. Nếu hệ thống thông báo "Không có sản phẩm phù hợp", hãy xin lỗi khách khéo léo, gợi ý họ đổi từ khóa hoặc gọi Hotline: 1900-AQUALUX.
+            5. Văn phong chuyên nghiệp, tinh tế, sang trọng. Trả lời ngắn gọn, dùng markdown (in đậm, danh sách) cho dễ nhìn.
+            6. Luôn cố gắng gợi ý khách hàng hành động tiếp theo (VD: "Bạn có muốn xem chi tiết mã sản phẩm này không?").
             """;
 
     public AIChatService(ProductRepository productRepository) {
@@ -76,10 +80,10 @@ public class AIChatService {
 
         List<Product> products;
         if (keyword.isEmpty() && categoryName.isEmpty() && maxPrice == null) {
-            products = productRepository.findFeaturedForAI(PageRequest.of(0, 2));
+            products = productRepository.findFeaturedForAI(PageRequest.of(0, 5));
         } else {
             products = productRepository.findForAIContext(null, minPrice, maxPrice, keyword, categoryName,
-                    PageRequest.of(0, 2));
+                    PageRequest.of(0, 5));
         }
 
         if (products.isEmpty()) {
@@ -92,6 +96,10 @@ public class AIChatService {
             String priceStr = price != null ? String.format("%,.0f đồng", price) : "Liên hệ";
             sb.append(String.format("- %s | Giá: %s | Slug: %s\n",
                     p.getName(), priceStr, p.getSlug()));
+            if (p.getDetail() != null && !p.getDetail().isEmpty()) {
+                String shortDesc = p.getDetail().length() > 150 ? p.getDetail().substring(0, 150) + "..." : p.getDetail();
+                sb.append("  Mô tả: ").append(shortDesc).append("\n");
+            }
         }
         return sb.toString();
     }
@@ -103,6 +111,11 @@ public class AIChatService {
                 .replace("có", "").replace("không", "").replace("nào", "")
                 .replace("cho", "").replace("tôi", "").replace("muốn", "")
                 .replace("mua", "").replace("tìm", "").replace("cần", "").trim();
+        
+        // If the remaining string has more than 3 words, it's a full sentence, don't use as SQL LIKE keyword
+        if (cleaned.split("\\s+").length > 3) {
+            return "";
+        }
         return cleaned.length() > 2 ? cleaned : "";
     }
 

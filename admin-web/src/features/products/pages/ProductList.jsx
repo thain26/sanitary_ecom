@@ -1,5 +1,6 @@
+import { message } from '../../../utils/AntdGlobalContext';
 import React, { useState, useEffect } from 'react';
-import { Table, Button, Input, Space, Tag, Modal, Drawer, message, Switch, Badge, Select } from 'antd';
+import { Table, Button, Input, Space, Tag, Modal, Drawer, Switch, Badge, Select } from 'antd';
 import { PlusOutlined, SearchOutlined, EditOutlined, DeleteOutlined, StarOutlined, StarFilled } from '@ant-design/icons';
 import { adminApi } from '../../../services/api';
 import ProductForm from './ProductForm';
@@ -132,7 +133,6 @@ const ProductList = () => {
         name: product.name,
         modelCode: product.modelCode,
         sku: product.sku,
-        description: product.description,
         detail: product.detail,
         basePrice: product.basePrice,
         salePrice: product.salePrice,
@@ -164,7 +164,6 @@ const ProductList = () => {
         name: product.name,
         modelCode: product.modelCode,
         sku: product.sku,
-        description: product.description,
         detail: product.detail,
         basePrice: product.basePrice,
         salePrice: product.salePrice,
@@ -380,6 +379,7 @@ const ProductList = () => {
             current: currentPage,
             pageSize: pageSize,
             total: total,
+            showTotal: (total, range) => `Hiển thị ${range[0]}-${range[1]} trên tổng số ${total} kết quả`,
             showSizeChanger: true,
             onChange: (page, size) => {
               setCurrentPage(page);
@@ -395,7 +395,7 @@ const ProductList = () => {
         onClose={() => setDrawerVisible(false)}
         open={drawerVisible}
         destroyOnClose
-        bodyStyle={{ paddingBottom: 80 }}
+        styles={{ body: { paddingBottom: 80 } }}
       >
         <ProductForm
           visible={drawerVisible}

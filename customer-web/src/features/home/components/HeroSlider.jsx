@@ -37,32 +37,36 @@ const HeroSlider = ({ collections = [] }) => {
             >
               <div className="hero-slider-overlay hero-slider-overlay--dark" />
               <div className="container hero-content hero-content--service">
-                <div className="hero-service-badge">CAM KẾT TỪ CHÚNG TÔI</div>
+                <div className="hero-service-badge">AQUALUX PROMISE</div>
                 <h1 className="hero-title hero-title--service">
-                  Đối Tác Tin Cậy Của Mọi Không Gian Sống
+                  Bảo Chứng Chất Lượng & Niềm Tin
                 </h1>
-                <p className="hero-desc">
-                  Chúng tôi cam kết mang đến trải nghiệm mua sắm thiết bị vệ sinh cao cấp tốt nhất tại Việt Nam.
+                <p className="hero-desc hero-desc--service">
+                  Hơn cả việc cung cấp thiết bị vệ sinh cao cấp, chúng tôi trao gửi sự an tâm tuyệt đối cho không gian sống của bạn.
                 </p>
-                <div className="hero-service-list">
-                  <div className="hero-service-item">
-                    <Shield size={20} strokeWidth={1.5} />
-                    <span>Đại lý ủy quyền chính thức INAX &amp; TOTO</span>
+                
+                <div className="hero-service-grid">
+                  <div className="hero-service-card">
+                    <div className="hero-service-icon"><Shield size={28} strokeWidth={1.2} /></div>
+                    <h3>Chính Hãng 100%</h3>
+                    <p>Đại lý ủy quyền phân phối cấp 1 của INAX & TOTO</p>
                   </div>
-                  <div className="hero-service-item">
-                    <Truck size={20} strokeWidth={1.5} />
-                    <span>Miễn phí giao hàng toàn quốc</span>
+                  <div className="hero-service-card">
+                    <div className="hero-service-icon"><Truck size={28} strokeWidth={1.2} /></div>
+                    <h3>Giao Hàng Toàn Quốc</h3>
+                    <p>Vận chuyển nhanh chóng, an toàn đến tận công trình</p>
                   </div>
-                  <div className="hero-service-item">
-                    <Wrench size={20} strokeWidth={1.5} />
-                    <span>Bảo hành chính hãng tối đa 10 năm</span>
+                  <div className="hero-service-card">
+                    <div className="hero-service-icon"><Wrench size={28} strokeWidth={1.2} /></div>
+                    <h3>Bảo Hành 10 Năm</h3>
+                    <p>Dịch vụ hậu mãi tận tâm, đổi trả dễ dàng, linh hoạt</p>
                   </div>
-                  <div className="hero-service-item">
-                    <Phone size={20} strokeWidth={1.5} />
-                    <span>Hỗ trợ tư vấn 24/7 — Hotline: 1800 1234</span>
+                  <div className="hero-service-card">
+                    <div className="hero-service-icon"><Phone size={28} strokeWidth={1.2} /></div>
+                    <h3>Hỗ Trợ 24/7</h3>
+                    <p>Chuyên gia tư vấn kỹ thuật luôn sẵn sàng hỗ trợ bạn</p>
                   </div>
                 </div>
-                <Link to="/chinh-sach" className="btn-slider btn-slider--gold">XEM CHÍNH SÁCH</Link>
               </div>
             </section>
           );

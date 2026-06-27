@@ -54,7 +54,6 @@ public class AdminProductService {
         product.setName(request.getName());
         product.setModelCode(request.getModelCode());
         product.setSku(request.getSku());
-        product.setDescription(request.getDescription());
         product.setDetail(request.getDetail());
         product.setBasePrice(request.getBasePrice());
         product.setSalePrice(request.getSalePrice());

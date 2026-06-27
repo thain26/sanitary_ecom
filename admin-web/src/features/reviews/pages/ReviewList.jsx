@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, Tag, Button, message, Modal, Tooltip, Input } from 'antd';
 import { StarFilled, EyeOutlined, EyeInvisibleOutlined, SearchOutlined } from '@ant-design/icons';
 import { adminApi } from '../../../services/api';
@@ -161,7 +161,7 @@ const ReviewList = () => {
           pagination={{
             defaultPageSize: 10,
             showSizeChanger: true,
-            showTotal: (total) => `Tổng số ${total} đánh giá`
+            showTotal: (total, range) => `Hiển thị ${range[0]}-${range[1]} trên tổng số ${total} đánh giá`
           }}
           scroll={{ x: 1000 }}
         />

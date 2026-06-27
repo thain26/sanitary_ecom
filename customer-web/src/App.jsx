@@ -22,6 +22,8 @@ import LoginPromptModal from './features/auth/components/LoginPromptModal';
 import NotFound from './pages/NotFound';
 import Toast from './components/common/Toast';
 
+import ScrollToTop from './components/common/ScrollToTop';
+
 function App() {
   const fetchCart = useCartStore(state => state.fetchCart);
   const fetchWishlist = useWishlistStore(state => state.fetchWishlist);
@@ -33,6 +35,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <Header />
       <main style={{ minHeight: 'calc(100vh - 140px)' }}>
         <Routes>

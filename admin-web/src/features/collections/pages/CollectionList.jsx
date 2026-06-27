@@ -1,9 +1,6 @@
+import { message } from '../../../utils/AntdGlobalContext';
 import React, { useState, useEffect, useCallback } from 'react';
-import {
-  Table, Switch, Tag, Button, Card, Typography, Input, Modal,
-  Form, message, Space, Image, Drawer, List, Avatar, Popconfirm,
-  Select, Divider, Badge, Tooltip, Empty
-} from 'antd';
+import { Table, Switch, Tag, Button, Card, Typography, Input, Modal, Form, Space, Image, Drawer, List, Avatar, Popconfirm, Select, Divider, Badge, Tooltip, Empty } from 'antd';
 import {
   PictureOutlined, EditOutlined, AppstoreOutlined,
   PlusOutlined, DeleteOutlined, SearchOutlined, UnorderedListOutlined

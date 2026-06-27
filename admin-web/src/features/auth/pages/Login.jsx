@@ -1,5 +1,6 @@
+import { message } from '../../../utils/AntdGlobalContext';
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Button, Card, Alert, message } from 'antd';
+import { Form, Input, Button, Card, Alert } from 'antd';
 import { UserOutlined, LockOutlined, SafetyCertificateOutlined } from '@ant-design/icons';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
@@ -77,7 +78,7 @@ const Login = () => {
           boxShadow: '0 20px 40px -15px rgba(0, 0, 0, 0.3)',
           zIndex: 1
         }}
-        bodyStyle={{ padding: '40px 30px' }}
+        styles={{ body: { padding: '40px 30px' } }}
       >
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
           <div style={{ 
