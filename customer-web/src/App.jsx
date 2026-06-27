@@ -21,17 +21,18 @@ import ChatWidget from './components/layout/ChatWidget';
 import LoginPromptModal from './features/auth/components/LoginPromptModal';
 import NotFound from './pages/NotFound';
 import Toast from './components/common/Toast';
-
 import ScrollToTop from './components/common/ScrollToTop';
+import { useAuthStore } from './features/auth/store/authStore';
 
 function App() {
   const fetchCart = useCartStore(state => state.fetchCart);
   const fetchWishlist = useWishlistStore(state => state.fetchWishlist);
+  const isAuthenticated = useAuthStore(state => state.isAuthenticated);
 
   useEffect(() => {
     fetchCart();
     fetchWishlist();
-  }, [fetchCart, fetchWishlist]);
+  }, [fetchCart, fetchWishlist, isAuthenticated]);
 
   return (
     <Router>
