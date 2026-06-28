@@ -20,10 +20,6 @@ const Footer = () => {
               <MapPin size={18} color="var(--color-accent)" style={{ marginTop: '2px', flexShrink: 0 }} />
               <p className="footer-text" style={{ margin: 0 }}>155 Nguyễn Văn Trỗi, Hà Đông, Hà Nội</p>
             </div>
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-              <MapPin size={18} color="var(--color-accent)" style={{ marginTop: '2px', flexShrink: 0 }} />
-              <p className="footer-text" style={{ margin: 0 }}>Phường 11, Phú Nhuận, TP.HCM</p>
-            </div>
           </div>
 
           <div>
