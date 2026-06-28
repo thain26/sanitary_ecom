@@ -30,7 +30,7 @@ const Footer = () => {
             <h3 className="footer-title">Hỗ Trợ</h3>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
               <Phone size={18} color="var(--color-accent)" />
-              <p className="footer-text" style={{ margin: 0 }}>Hotline: 1800 1234</p>
+              <p className="footer-text" style={{ margin: 0 }}>Hotline: 1900 1234</p>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.2rem' }}>
               <Mail size={18} color="var(--color-accent)" />

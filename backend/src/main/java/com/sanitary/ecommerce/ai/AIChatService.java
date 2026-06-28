@@ -81,7 +81,7 @@ public class AIChatService {
                     p.getName(),
                     p.getSlug(),
                     p.getSalePrice() != null ? p.getSalePrice() : p.getBasePrice(),
-                    p.getMainImageUrl()
+                    (p.getImages() != null && !p.getImages().isEmpty()) ? p.getImages().get(0).getUrl() : null
                 )
             ).toList();
 

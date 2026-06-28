@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
         log.error("Unhandled exception occurred: ", ex);
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                "Lỗi hệ thống không xác định.",
+                ex.getMessage() != null ? ex.getMessage() : "NullPointerException",
                 ZonedDateTime.now()
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
