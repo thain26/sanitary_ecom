@@ -89,6 +89,12 @@ public class AIChatService {
         } catch (Exception e) {
             System.err.println("AIChatService ERROR: " + e.getMessage());
             e.printStackTrace();
+            String errorMsg = e.getMessage();
+            if (errorMsg != null && (errorMsg.contains("503") || errorMsg.contains("429"))) {
+                return new ChatResponse(
+                        "Hệ thống AI đang tiếp nhận quá nhiều yêu cầu cùng lúc (quá tải). Vui lòng chờ vài giây rồi thử lại nhé! 😊",
+                        List.of());
+            }
             return new ChatResponse(
                     "Xin lỗi, tôi đang gặp sự cố kỹ thuật. Vui lòng thử lại sau hoặc liên hệ hotline để được hỗ trợ trực tiếp! 😊",
                     List.of());
