@@ -1,7 +1,9 @@
 package com.sanitary.ecommerce.user;
+import com.sanitary.ecommerce.user.entity.User;
+import com.sanitary.ecommerce.user.repository.UserRepository;
 
-import com.sanitary.ecommerce.product.Product;
-import com.sanitary.ecommerce.product.ProductRepository;
+import com.sanitary.ecommerce.product.entity.Product;
+import com.sanitary.ecommerce.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

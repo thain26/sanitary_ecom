@@ -2,8 +2,8 @@ package com.sanitary.ecommerce.ai;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sanitary.ecommerce.product.Product;
-import com.sanitary.ecommerce.product.ProductRepository;
+import com.sanitary.ecommerce.product.entity.Product;
+import com.sanitary.ecommerce.product.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;

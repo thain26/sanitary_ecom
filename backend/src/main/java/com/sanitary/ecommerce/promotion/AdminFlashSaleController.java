@@ -1,7 +1,11 @@
 package com.sanitary.ecommerce.promotion;
+import com.sanitary.ecommerce.promotion.entity.FlashSale;
+import com.sanitary.ecommerce.promotion.entity.FlashSaleProduct;
+import com.sanitary.ecommerce.promotion.repository.FlashSaleProductRepository;
+import com.sanitary.ecommerce.promotion.repository.FlashSaleRepository;
 
-import com.sanitary.ecommerce.product.Product;
-import com.sanitary.ecommerce.product.ProductRepository;
+import com.sanitary.ecommerce.product.entity.Product;
+import com.sanitary.ecommerce.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;

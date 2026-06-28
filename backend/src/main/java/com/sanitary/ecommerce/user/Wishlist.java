@@ -1,6 +1,6 @@
 package com.sanitary.ecommerce.user;
 
-import com.sanitary.ecommerce.product.Product;
+import com.sanitary.ecommerce.product.entity.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

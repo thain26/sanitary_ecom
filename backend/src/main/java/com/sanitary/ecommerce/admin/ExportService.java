@@ -1,6 +1,6 @@
 package com.sanitary.ecommerce.admin;
 
-import com.sanitary.ecommerce.order.Order;
+import com.sanitary.ecommerce.order.entity.Order;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;

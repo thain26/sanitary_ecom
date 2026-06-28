@@ -1,4 +1,5 @@
 package com.sanitary.ecommerce.user;
+import com.sanitary.ecommerce.user.entity.User;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

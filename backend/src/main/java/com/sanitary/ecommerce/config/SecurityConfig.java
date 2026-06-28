@@ -1,6 +1,7 @@
 package com.sanitary.ecommerce.config;
+import com.sanitary.ecommerce.user.entity.User;
 
-import com.sanitary.ecommerce.user.UserRepository;
+import com.sanitary.ecommerce.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

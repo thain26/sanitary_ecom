@@ -2,8 +2,8 @@ package com.sanitary.ecommerce.auth;
 
 import com.sanitary.ecommerce.config.JwtService;
 import com.sanitary.ecommerce.notification.NotificationEvent;
-import com.sanitary.ecommerce.user.User;
-import com.sanitary.ecommerce.user.UserRepository;
+import com.sanitary.ecommerce.user.entity.User;
+import com.sanitary.ecommerce.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.redis.core.StringRedisTemplate;
